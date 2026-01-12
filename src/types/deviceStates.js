@@ -1,0 +1,7 @@
+export const DEVICE_STATES = Object.freeze({
+  INITIALIZING: "INITIALIZING",
+  ACTIVE: "ACTIVE",
+  WARNING: "WARNING",
+  FAULT: "FAULT",
+  OFFLINE: "OFFLINE",
+});
