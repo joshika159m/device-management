@@ -9,7 +9,36 @@ export const initWebSocket = (store) => {
   });
 
   socket.on("connect", () => {
-    console.log("WebSocket connected:", socket.id);
+    setTimeout(() => {
+  store.dispatch({
+    type: "devices/deviceUpsert",
+    payload: {
+      deviceId: "TEST-FAULT",
+      state: "FAULT",
+    },
+  });
+}, 1000);
+
+setTimeout(() => {
+  store.dispatch({
+    type: "devices/deviceUpsert",
+    payload: {
+      deviceId: "TEST-OFFLINE",
+      state: "OFFLINE",
+    },
+  });
+}, 2000);
+
+setTimeout(() => {
+  store.dispatch({
+    type: "devices/deviceUpsert",
+    payload: {
+      deviceId: "TEST-ACTIVE",
+      state: "ACTIVE",
+    },
+  });
+}, 3000);
+
   });
 
   socket.on("device:update", (payload) => {
