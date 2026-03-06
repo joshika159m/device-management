@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { stateStyles } from "./deviceStateStyles";
-import { selectDevice } from "./devicesSlice";
+import { selectDevice, setFilter } from "./devicesSlice";
 
 export default function DeviceList() {
   const dispatch = useDispatch();
@@ -22,19 +22,18 @@ export default function DeviceList() {
 
   return (
     <div className="bg-slate-800 rounded-lg p-4 shadow">
-      <h2 className="text-lg font-semibold mb-4">Devices</h2>
-<div className="flex justify-between items-center mb-2">
-  <h2 className="text-lg font-semibold">Devices</h2>
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-lg font-semibold">Devices</h2>
 
-  {filter !== "ALL" && (
-    <button
-      onClick={() => dispatch(setFilter("ALL"))}
-      className="text-xs text-slate-400 hover:text-white"
-    >
-      Clear Filter
-    </button>
-  )}
-</div>
+        {filter !== "ALL" && (
+          <button
+            onClick={() => dispatch(setFilter("ALL"))}
+            className="text-xs text-slate-400 hover:text-white"
+          >
+            Clear Filter
+          </button>
+        )}
+      </div>
 
       <table className="w-full text-sm">
         <thead className="text-slate-400 border-b border-slate-700 text-xs uppercase tracking-wide">
@@ -57,9 +56,8 @@ export default function DeviceList() {
                 transition
               `}
             >
-              <td className="font-mono py-2 px-2">
-                {device.deviceId}
-              </td>
+              <td className="font-mono py-2 px-2">{device.deviceId}</td>
+
               <td className="px-2">
                 <span
                   className={`text-xs font-semibold px-2 py-1 rounded ${stateStyles[device.state]}`}

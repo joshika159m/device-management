@@ -12,8 +12,14 @@ const alertsSlice = createSlice({
       const deviceId = action.payload;
       state.acknowledged[deviceId] = true;
     },
+
+    resetAcknowledgement(state, action) {
+      const deviceId = action.payload;
+      delete state.acknowledged[deviceId];
+    },
   },
 });
 
-export const { acknowledgeAlert } = alertsSlice.actions;
+export const { acknowledgeAlert, resetAcknowledgement } = alertsSlice.actions;
+
 export default alertsSlice.reducer;

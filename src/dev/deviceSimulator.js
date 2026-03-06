@@ -1,4 +1,7 @@
-import { deviceUpsert, deviceStateChanged } from "../features/devices/devicesSlice";
+import {
+  deviceUpsert,
+  deviceStateChanged,
+} from "../features/devices/devicesSlice";
 import { DEVICE_STATES } from "../types/deviceStates";
 
 const states = [
@@ -13,20 +16,19 @@ function randomState() {
 }
 
 export function startDeviceSimulator(store) {
-  const deviceIds = Array.from({ length: 250}, (_, i) => `SIM-${i + 1}`);
+  const deviceIds = Array.from({ length: 20 }, (_, i) => `SIM-${i + 1}`);
 
   deviceIds.forEach((id) => {
     store.dispatch(
       deviceUpsert({
         deviceId: id,
         state: DEVICE_STATES.INITIALIZING,
-      })
+      }),
     );
   });
 
   setInterval(() => {
-    const deviceId =
-      deviceIds[Math.floor(Math.random() * deviceIds.length)];
+    const deviceId = deviceIds[Math.floor(Math.random() * deviceIds.length)];
 
     const nextState = randomState();
 
@@ -35,7 +37,7 @@ export function startDeviceSimulator(store) {
         deviceId,
         nextState,
         reason: "SIMULATED_EVENT",
-      })
+      }),
     );
   }, 2000);
 }
