@@ -16,7 +16,7 @@ function randomState() {
 }
 
 export function startDeviceSimulator(store) {
-  const deviceIds = Array.from({ length: 20 }, (_, i) => `SIM-${i + 1}`);
+  const deviceIds = Array.from({ length: 50 }, (_, i) => `SIM-${i + 1}`);
 
   deviceIds.forEach((id) => {
     store.dispatch(
